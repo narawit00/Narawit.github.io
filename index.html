@@ -3,29 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Portfolio</title>
+  <title>นราวิชญ์ โนนอาสา | Portfolio</title>
   <!-- Tailwind CSS (CDN) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Noto+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Noto+Sans+Thai:wght@400;500;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600&display=swap');
     body {
       font-family: 'Noto Sans Thai', 'Inter', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      color: #1e293b;
     }
     h1, h2, h3, h4, h5 {
       font-family: 'Poppins', sans-serif;
+      font-weight: 700;
     }
     .section {
-      padding: 80px 20px;
+      padding: 100px 20px;
+      position: relative;
     }
     .card-hover {
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
     .card-hover:hover {
-      transform: translateY(-5px);
+      transform: translateY(-8px) scale(1.02);
       box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
     }
     .timeline::before {
@@ -35,14 +39,16 @@
       top: 0;
       height: 100%;
       width: 2px;
-      background: #e5e7eb;
+      background: linear-gradient(to bottom, #1e3a8a, #3b82f6);
       transform: translateX(-50%);
+      z-index: 0;
     }
     .timeline-item {
       position: relative;
       width: 50%;
       padding: 20px;
       box-sizing: border-box;
+      z-index: 1;
     }
     .timeline-item:nth-child(odd) {
       left: 0;
@@ -57,13 +63,60 @@
       background: #1e3a8a;
       border-radius: 50%;
       top: 30px;
-      z-index: 1;
+      z-index: 2;
+      box-shadow: 0 0 0 4px white;
+      transition: all 0.3s ease;
     }
     .timeline-item:nth-child(odd) .timeline-dot {
       right: -10px;
     }
     .timeline-item:nth-child(even) .timeline-dot {
       left: -10px;
+    }
+    .timeline-item:hover .timeline-dot {
+      transform: scale(1.2);
+      background: #3b82f6;
+    }
+    /* Scroll Reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Gradient Button */
+    .btn-gradient {
+      background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+      color: white;
+      box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+    }
+    .btn-gradient:hover {
+      background: linear-gradient(135deg, #1e3a8a, #2563eb);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(30, 58, 138, 0.4);
+    }
+    /* Soft Shadow Card */
+    .card-soft {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+    /* Hover Scale */
+    .hover-scale {
+      transition: transform 0.3s ease;
+    }
+    .hover-scale:hover {
+      transform: scale(1.03);
+    }
+    /* Floating Animation */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+    .float {
+      animation: float 3s ease-in-out infinite;
     }
   </style>
   <script>
@@ -74,24 +127,46 @@
             primary: '#1e3a8a',
             secondary: '#3b82f6',
             accent: '#10b981',
-            dark: '#1e293b'
+            dark: '#1e293b',
+            light: '#f8fafc'
+          },
+          fontFamily: {
+            heading: ['Poppins', 'sans-serif'],
+            body: ['Noto Sans Thai', 'sans-serif']
           }
         }
       }
     }
+
+    // Scroll Reveal Animation
+    document.addEventListener('DOMContentLoaded', function() {
+      const revealElements = document.querySelectorAll('.reveal');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+
+      revealElements.forEach(el => observer.observe(el));
+    });
   </script>
 </head>
-<body class="bg-gray-50 text-gray-800 scroll-smooth">
+<body class="scroll-smooth">
 
   <!-- Navigation -->
-  <nav class="fixed top-0 left-0 w-full bg-white shadow-sm z-50">
+  <nav class="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
       <div class="font-bold text-xl text-primary font-heading">MR. NARAWIT</div>
       <div class="hidden md:flex space-x-6">
-        <a href="#about" class="hover:text-primary font-medium">เกี่ยวกับ</a>
-        <a href="#skills" class="hover:text-primary font-medium">ทักษะ</a>
-        <a href="#projects" class="hover:text-primary font-medium">ผลงาน</a>
-        <a href="#contact" class="hover:text-primary font-medium">ติดต่อ</a>
+        <a href="#about" class="hover:text-primary font-medium transition">เกี่ยวกับ</a>
+        <a href="#skills" class="hover:text-primary font-medium transition">ทักษะ</a>
+        <a href="#projects" class="hover:text-primary font-medium transition">ผลงาน</a>
+        <a href="#contact" class="hover:text-primary font-medium transition">ติดต่อ</a>
       </div>
       <button class="md:hidden text-gray-600">
         <i class="fas fa-bars text-xl"></i>
@@ -100,42 +175,40 @@
   </nav>
 
   <!-- Hero Section -->
-  <section id="home" class="min-h-screen flex flex-col md:flex-row items-center px-6 pt-24 pb-12 md:px-16">
-    <div class="md:w-1/2 mb-12 md:mb-0 md:pr-10 text-center md:text-left">
+  <section id="home" class="min-h-screen flex flex-col md:flex-row items-center px-6 pt-24 pb-12 md:px-16 bg-gradient-to-br from-blue-50 to-indigo-50">
+    <div class="md:w-1/2 mb-12 md:mb-0 md:pr-10 text-center md:text-left reveal">
       <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 font-heading leading-tight">
         นาย นราวิชญ์ โนนอาสา <br />
-        <span class="text-primary">Introduction  profile</span>
-        <p class="mt-4 text-lg text-gray-600 max-w-lg">
-            History
-        </p>
+        <span class="text-primary">CS 66040249108</span>
       </h1>
       <p class="mt-4 text-lg text-gray-600 max-w-lg">
-        สวัดดีครับผมชื่อว่า นาย นราวิชญ์  โนนอาสา <br />
-        ผมมีชื่อ เล่นว่า ต้นกล้า <br / >
-        เกิดเมื่อวันที่ : 24 กุมภาพันธ์ พ.ศ 2547  
+        นักศึกษาวิทยาการคอมพิวเตอร์ ชั้นปีที่ 3 <br />
+        มหาวิทยาลัยราชภัฏอุดรธานี (ศูนย์สามพร้าว) <br />
+        สนใจ Mobile Development, UI/UX Design และ Cybersecurity
       </p>
       <div class="mt-8 flex flex-wrap gap-4 justify-center md:justify-start">
-        <a href="#projects" class="px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-blue-800 transition shadow-md">
+        <a href="#projects" class="px-6 py-3 btn-gradient rounded-lg font-medium hover:bg-blue-700 transition shadow-lg">
           ดูผลงาน
         </a>
-        <a href="#contact" class="px-6 py-3 border-2 border-primary text-primary rounded-lg font-medium hover:bg-primary hover:text-white transition shadow-md">
+        <a href="#contact" class="px-6 py-3 border-2 border-primary text-primary rounded-lg font-medium hover:bg-primary hover:text-white transition shadow-lg">
           ติดต่อ
         </a>
       </div>
     </div>
 
-    <div class="md:w-1/2 flex justify-center">
+    <div class="md:w-1/2 flex justify-center reveal">
       <div class="relative">
-        <div class="w-56 h-56 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-white shadow-xl">
-          <!--  สำหรับอัปโหลดรูปโปรไฟล์ -->
+        <div class="w-56 h-56 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-white shadow-xl hover:shadow-2xl transition">
+          <!-- สำหรับอัปโหลดรูปโปรไฟล์ -->
           <img 
             src="myphoto.jpg" 
             alt="นราวิชญ์ โนนอาสา" 
             class="w-full h-full object-cover"
-            onerror="this.parentElement.innerHTML='<div class=\"bg-gray-200 w-full h-full flex items-center justify-center text-gray-500 text-center\">รูปโปรไฟล์<br>ยังไม่ได้อัปโหลด</div>">
+            onerror="this.parentElement.innerHTML='<div class=\"bg-gray-200 w-full h-full flex items-center justify-center text-gray-500 text-center\">รูปโปรไฟล์<br>ยังไม่ได้อัปโหลด</div>'"
+          >
         </div>
-        <div class="absolute -bottom-4 -right-4 bg-accent text-white px-4 py-1.5 rounded-full font-bold shadow-lg text-sm md:text-base">
-          Narwit Nonasa
+        <div class="absolute -bottom-4 -right-4 bg-accent text-white px-4 py-1.5 rounded-full font-bold shadow-lg text-sm md:text-base animate-pulse">
+          Mobile & Web Dev
         </div>
       </div>
     </div>
@@ -144,12 +217,12 @@
   <!-- About Section -->
   <section id="about" class="section bg-white">
     <div class="container mx-auto max-w-6xl">
-      <div class="text-center mb-12">
+      <div class="text-center mb-12 reveal">
         <h2 class="text-3xl md:text-4xl font-bold text-dark font-heading">เกี่ยวกับฉัน</h2>
         <div class="w-20 h-1 bg-primary mx-auto mt-3 rounded"></div>
       </div>
       <div class="grid md:grid-cols-2 gap-8 items-center">
-        <div>
+        <div class="reveal">
           <h3 class="text-2xl font-bold text-gray-800 mb-4">นาย นราวิชญ์ โนนอาสา (Mr. Narawit Nonasa)</h3>
           <p class="text-gray-600 mb-4 leading-relaxed">
             นักศึกษาชั้นปีที่ 3 สาขา <strong>วิทยาการคอมพิวเตอร์</strong> คณะวิทยาศาสตร์  
@@ -158,10 +231,10 @@
           </p>
           <p class="text-gray-600 mb-6 leading-relaxed">
             มองว่า “เทคโนโลยีที่ดี ต้องใช้งานง่าย ปลอดภัย และแก้ปัญหาได้จริง”  
-            พร้อมเรียนรู้และพัฒนาอย่างต่อเนื่อง เพื่อสร้างสรรค์สิ่งที่มีคุณค่า
+            พร้อมเรียนรู้และพัฒนาอย่างต่อเนื่อง เพื่อสร้างสรรค์สิ่งที่มีคุณค่าให้กับสังคม
           </p>
         </div>
-        <div class="bg-gray-100 p-6 rounded-xl">
+        <div class="bg-gray-100 p-6 rounded-xl reveal">
           <h4 class="font-bold text-lg text-primary mb-3">ความสนใจเฉพาะทาง</h4>
           <ul class="space-y-2">
             <li class="flex items-center">
@@ -182,122 +255,123 @@
     </div>
   </section>
 
-<!-- Skills Section -->
-<section id="skills" class="section bg-gray-50">
-  <div class="container mx-auto max-w-6xl">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold text-dark font-heading">ทักษะและความสามารถ</h2>
-      <div class="w-20 h-1 bg-primary mx-auto mt-3 rounded"></div>
+  <!-- Skills Section -->
+  <section id="skills" class="section bg-gray-50">
+    <div class="container mx-auto max-w-6xl">
+      <div class="text-center mb-12 reveal">
+        <h2 class="text-3xl md:text-4xl font-bold text-dark font-heading">ทักษะและความสามารถ</h2>
+        <div class="w-20 h-1 bg-primary mx-auto mt-3 rounded"></div>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Programming -->
+        <div class="bg-white p-6 rounded-xl shadow-sm card-hover min-h-[220px] flex flex-col justify-between card-soft reveal">
+          <div>
+            <div class="text-primary mb-4">
+              <i class="fas fa-code text-3xl"></i>
+            </div>
+            <h3 class="font-bold text-lg mb-3">Programming</h3>
+            <div class="space-y-2">
+              <div class="flex justify-between text-sm">
+                <span>HTML</span>
+                <span>✓</span>
+              </div>
+              <div class="flex justify-between text-sm">
+                <span>CSS</span>
+                <span>✓</span>
+              </div>
+              <div class="flex justify-between text-sm">
+                <span>JavaScript</span>
+                <span>✓</span>
+              </div>
+              <div class="flex justify-between text-sm">
+                <span>PHP</span>
+                <span>✓</span>
+              </div>
+              <div class="flex justify-between text-sm">
+                <span>Python</span>
+                <span>✓</span>
+              </div>
+              <div class="flex justify-between text-sm">
+                <span>Java & Dart</span>
+                <span>✓</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI & Data -->
+        <div class="bg-white p-6 rounded-xl shadow-sm card-hover min-h-[220px] flex flex-col justify-between card-soft reveal">
+          <div>
+            <div class="text-secondary mb-4">
+              <i class="fas fa-database text-3xl"></i>
+            </div>
+            <h3 class="font-bold text-lg mb-3">AI & ข้อมูล</h3>
+            <div class="space-y-2">
+              <div class="flex justify-between text-sm">
+                <span>SQL</span>
+                <span>✓</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tools -->
+        <div class="bg-white p-6 rounded-xl shadow-sm card-hover min-h-[220px] flex flex-col justify-between card-soft reveal">
+          <div>
+            <div class="text-accent mb-4">
+              <i class="fas fa-tools text-3xl"></i>
+            </div>
+            <h3 class="font-bold text-lg mb-3">Tools</h3>
+            <div class="flex flex-wrap gap-2 mt-3">
+              <span class="bg-gray-200 px-2 py-1 rounded text-sm hover:scale-105 transition">GitHub</span>
+              <span class="bg-gray-200 px-2 py-1 rounded text-sm hover:scale-105 transition">VS Code</span>
+              <span class="bg-gray-200 px-2 py-1 rounded text-sm hover:scale-105 transition">Figma</span>
+              <span class="bg-gray-200 px-2 py-1 rounded text-sm hover:scale-105 transition">Firebase</span>
+              <span class="bg-gray-200 px-2 py-1 rounded text-sm hover:scale-105 transition">Visual Studio</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Soft Skills -->
+        <div class="bg-white p-6 rounded-xl shadow-sm card-hover min-h-[220px] flex flex-col justify-between card-soft reveal">
+          <div>
+            <div class="text-gray-600 mb-4">
+              <i class="fas fa-users text-3xl"></i>
+            </div>
+            <h3 class="font-bold text-lg mb-3">Soft Skills</h3>
+            <ul class="space-y-2 text-sm">
+              <li class="flex items-center">
+                <i class="fas fa-check text-accent mr-2"></i> การทำงานเป็นทีม
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check text-accent mr-2"></i> การสื่อสารกับทีม
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-      <!-- Programming -->
-      <div class="bg-white p-6 rounded-xl shadow-sm card-hover min-h-[220px] flex flex-col justify-between">
-        <div>
-          <div class="text-primary mb-4">
-            <i class="fas fa-code text-3xl"></i>
-          </div>
-          <h3 class="font-bold text-lg mb-3">Programming</h3>
-          <div class="space-y-2">
-            <div class="flex justify-between text-sm">
-              <span>HTML</span>
-              <span>✓</span>
-            </div>
-            <div class="flex justify-between text-sm">
-              <span>CSS</span>
-              <span>✓</span>
-            </div>
-            <div class="flex justify-between text-sm">
-              <span>JavaScript</span>
-              <span>✓</span>
-            </div>
-            <div class="flex justify-between text-sm">
-              <span>PHP</span>
-              <span>✓</span>
-            </div>
-            <div class="flex justify-between text-sm">
-              <span>Python</span>
-              <span>✓</span>
-            </div>
-            <div class="flex justify-between text-sm">
-              <span>Java & Dart</span>
-              <span>✓</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- AI & Data -->
-      <div class="bg-white p-6 rounded-xl shadow-sm card-hover min-h-[220px] flex flex-col justify-between">
-        <div>
-          <div class="text-secondary mb-4">
-            <i class="fas fa-database text-3xl"></i>
-          </div>
-          <h3 class="font-bold text-lg mb-3">AI & ข้อมูล</h3>
-          <div class="space-y-2">
-            <div class="flex justify-between text-sm">
-              <span>SQL</span>
-              <span>✓</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tools -->
-      <div class="bg-white p-6 rounded-xl shadow-sm card-hover min-h-[220px] flex flex-col justify-between">
-        <div>
-          <div class="text-accent mb-4">
-            <i class="fas fa-tools text-3xl"></i>
-          </div>
-          <h3 class="font-bold text-lg mb-3">Tools</h3>
-          <div class="flex flex-wrap gap-2 mt-3">
-            <span class="bg-gray-200 px-2 py-1 rounded text-sm">GitHub</span>
-            <span class="bg-gray-200 px-2 py-1 rounded text-sm">VS Code</span>
-            <span class="bg-gray-200 px-2 py-1 rounded text-sm">Figma</span>
-            <span class="bg-gray-200 px-2 py-1 rounded text-sm">Firebase</span>
-            <span class="bg-gray-200 px-2 py-1 rounded text-sm">Visual Studio</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Soft Skills -->
-      <div class="bg-white p-6 rounded-xl shadow-sm card-hover min-h-[220px] flex flex-col justify-between">
-        <div>
-          <div class="text-gray-600 mb-4">
-            <i class="fas fa-users text-3xl"></i>
-          </div>
-          <h3 class="font-bold text-lg mb-3">Soft Skills</h3>
-          <ul class="space-y-2 text-sm">
-            <li class="flex items-center">
-              <i class="fas fa-check text-accent mr-2"></i> การทำงานเป็นทีม
-            </li>
-            <li class="flex items-center">
-              <i class="fas fa-check text-accent mr-2"></i> การสื่อสารกับทีม
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-    <!-- Projects Section -->
+  <!-- Projects Section -->
   <section id="projects" class="section bg-white">
     <div class="container mx-auto max-w-6xl">
-      <div class="text-center mb-12">
+      <div class="text-center mb-12 reveal">
         <h2 class="text-3xl md:text-4xl font-bold text-dark font-heading">ผลงานและโครงการ</h2>
         <div class="w-20 h-1 bg-primary mx-auto mt-3 rounded"></div>
       </div>
 
       <div class="space-y-10">
         <!-- Project 1 -->
-        <div class="bg-gray-50 rounded-2xl overflow-hidden card-hover">
+        <div class="bg-gray-50 rounded-2xl overflow-hidden card-hover card-soft reveal">
           <div class="md:flex">
             <div class="md:w-1/3 h-64 md:h-auto flex items-center justify-center bg-gray-100">
-              <!-- 🖼️ สำหรับอัปโหลดรูป NSC App: วางไฟล์ชื่อ nsc-app.jpg หรือ .png ไว้ใน /images -->
+              <!-- 🖼️ สำหรับอัปโหลดรูป NSC App -->
               <img 
                 src="Screenshot 2025-05-09 151404.png" 
                 alt="NSC App Mockup" 
-                class="object-contain w-4/5 h-4/5 mx-auto"
+                class="object-contain w-4/5 h-4/5 mx-auto hover:scale-105 transition"
                 onerror="this.parentElement.innerHTML='<div class=\"bg-gray-200 w-full h-full flex items-center justify-center text-gray-500 text-center px-2\">รูป NSC App<br>ยังไม่ได้อัปโหลด</div>'"
               >
             </div>
@@ -307,35 +381,35 @@
               <p class="text-gray-600 mb-4">
                 พัฒนาแอปพลิเคชันเพื่อช่วยเหลือผู้สูงอายุในการเลือกอาหารที่เหมาะสมตามสุขภาพและความต้องการ
               </p>
-              <!-- <div class="flex flex-wrap gap-2 mb-4">
+              <div class="flex flex-wrap gap-2 mb-4">
                 <span class="bg-gray-800 text-white px-2 py-1 rounded text-sm">Dart</span>
                 <span class="bg-blue-600 text-white px-2 py-1 rounded text-sm">Flutter</span>
                 <span class="bg-orange-500 text-white px-2 py-1 rounded text-sm">Firebase</span>
                 <span class="bg-purple-600 text-white px-2 py-1 rounded text-sm">Figma</span>
-              </div> -->
-              <!-- 📄 สำหรับอัปโหลดเอกสาร: วางไฟล์ชื่อ nsc-report.pdf ไว้ใน /docs -->
+              </div>
+              <!-- 📄 ดาวน์โหลดเอกสาร -->
               <a 
                 href="การเเนะนำอาหารสำหรับผู้สุงอายุ 2025.pdf" 
                 download 
                 class="mt-3 inline-block bg-gray-200 text-gray-800 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-300 transition"
-                onerror="this.outerHTML='<span class=\"text-gray-400 text-sm\">เอกสาร</span>'"
+                onerror="this.outerHTML='<span class=\"text-gray-400 text-sm\">เอกสารยังไม่พร้อม</span>'"
               >
-                DOWLOAD HERE!
+                📄 DOWLOAD HERE!
               </a>
             </div>
           </div>
         </div>
 
         <!-- Project 2 -->
-        <div class="bg-gray-50 rounded-2xl overflow-hidden card-hover">
+        <div class="bg-gray-50 rounded-2xl overflow-hidden card-hover card-soft reveal">
           <div class="md:flex flex-row-reverse">
             <div class="md:w-1/3 h-64 md:h-auto flex items-center justify-center bg-gray-100">
-              <!-- 🖼️ สำหรับอัปโหลดรูปเว็บอุดร: วางไฟล์ชื่อ udon-web.jpg หรือ .png ไว้ใน /images -->
+              <!-- 🖼️ สำหรับอัปโหลดรูปเว็บอุดร -->
               <img 
                 src="Screenshot 2025-11-12 205530.png" 
                 alt="Udonthani Web" 
-                class="object-contain w-4/5 h-4/5 mx-auto"
-                onerror="this.parentElement.innerHTML='<div class=\"bg-gray-200 w-full h-full flex items-center justify-center text-gray-500 text-center px-2\">รูปเว็บอุดร<br>'"
+                class="object-contain w-4/5 h-4/5 mx-auto hover:scale-105 transition"
+                onerror="this.parentElement.innerHTML='<div class=\"bg-gray-200 w-full h-full flex items-center justify-center text-gray-500 text-center px-2\">รูปเว็บอุดร<br>ยังไม่ได้อัปโหลด</div>'"
               >
             </div>
             <div class="md:w-2/3 p-6 md:p-8">
@@ -344,12 +418,12 @@
               <p class="text-gray-600 mb-4">
                 ออกแบบและพัฒนาเว็บไซต์เพื่อส่งเสริมการท่องเที่ยวในจังหวัดอุดรธานี
               </p>
-              <!-- <div class="flex flex-wrap gap-2 mb-4">
+              <div class="flex flex-wrap gap-2 mb-4">
                 <span class="bg-gray-800 text-white px-2 py-1 rounded text-sm">HTML/CSS</span>
                 <span class="bg-yellow-500 text-black px-2 py-1 rounded text-sm">JavaScript</span>
                 <span class="bg-orange-500 text-white px-2 py-1 rounded text-sm">Firebase</span>
-              </div> -->
-              <!-- 📄 สำหรับอัปโหลดเอกสาร: วางไฟล์ชื่อ udon-web-docs.pdf ไว้ใน /docs -->
+              </div>
+              <!-- 📄 ดาวน์โหลดเอกสาร -->
               <!-- <a 
                 href="docs/udon-web-docs.pdf" 
                 download 
@@ -365,10 +439,10 @@
     </div>
   </section>
 
-  <!-- Education & Activities -->
+  <!-- Education Section -->
   <section id="education" class="section bg-gray-50">
     <div class="container mx-auto max-w-4xl">
-      <div class="text-center mb-12">
+      <div class="text-center mb-12 reveal">
         <h2 class="text-3xl md:text-4xl font-bold text-dark font-heading">การศึกษา</h2>
         <div class="w-20 h-1 bg-primary mx-auto mt-3 rounded"></div>
       </div>
@@ -376,7 +450,7 @@
       <!-- Timeline -->
       <div class="relative timeline">
         <!-- ป.เอก - ป.6 -->
-        <div class="timeline-item">
+        <div class="timeline-item reveal">
           <div class="timeline-dot"></div>
           <div class="bg-white p-5 rounded-lg shadow-sm">
             <span class="text-sm text-gray-500">2550 – 2559</span>
@@ -386,7 +460,7 @@
         </div>
 
         <!-- ม.1 – ม.6 -->
-        <div class="timeline-item">
+        <div class="timeline-item reveal">
           <div class="timeline-dot"></div>
           <div class="bg-white p-5 rounded-lg shadow-sm">
             <span class="text-sm text-gray-500">2559 – 2565</span>
@@ -396,7 +470,7 @@
         </div>
 
         <!-- ปัจจุบัน -->
-        <div class="timeline-item">
+        <div class="timeline-item reveal">
           <div class="timeline-dot"></div>
           <div class="bg-white p-5 rounded-lg shadow-sm">
             <span class="text-sm text-gray-500">2565 – ปัจจุบัน</span>
@@ -404,46 +478,67 @@
             <p>คณะวิทยาศาสตร์ สาขา <strong>วิทยาการคอมพิวเตอร์</strong> — ชั้นปีที่ 3</p>
           </div>
         </div>
-
-      <!-- Activities Section -->
-<section id="activities" class="section bg-gray-50">
-  <div class="container mx-auto max-w-4xl">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold text-dark font-heading">กิจกรรม</h2>
-      <div class="w-20 h-1 bg-accent mx-auto mt-3 rounded"></div>
+      </div>
     </div>
+  </section>
 
-    <!-- Timeline -->
-    <div class="relative timeline">
-      <!-- กิจกรรม 1 -->
-      <div class="timeline-item">
-        <div class="timeline-dot bg-accent"></div>
-        <div class="bg-white p-5 rounded-lg shadow-sm border-l-4 border-accent">
-          <span class="text-sm text-gray-500">2565 – ปัจจุบัน</span>
-          <h4 class="font-bold text-lg">ยุวชนอาสา & งานรับปริญญา</h4>
-          <ul class="list-disc pl-5 text-gray-600 mt-2 space-y-1">
-            <li>มีโอกาสช่วยโครงการยุวชนอาสา</li>
-            <li>มีโอกาสช่วยงานวันรับปริญญาบัตร มหาวิทยาลัยราชภัฏอุดรธานี</li>
-          </ul>
-          <!-- 🖼️ สำหรับอัปโหลดรูปกิจกรรม: วางไฟล์ชื่อ activity-1.jpg ไว้ใน /images -->
-          <div class="mt-4">
-            <img 
-              src="work1.2.jpg" 
-              alt="กิจกรรมยุวชนอาสา" 
-              src="Work1.1.jpg"
-              alt="วันรับปริญญาบัตร มหาวิทยาลัยราชภัฏอุดรธานี"
-              class="object-cover w-full h-48 rounded-lg"
-              onerror="this.parentElement.innerHTML='<div class=\"bg-gray-200 w-full h-48 flex items-center justify-center text-gray-500 text-center\">รูปกิจกรรม<br>'"
-            >
+  <!-- Activities Section -->
+  <section id="activities" class="section bg-white">
+    <div class="container mx-auto max-w-4xl">
+      <div class="text-center mb-12 reveal">
+        <h2 class="text-3xl md:text-4xl font-bold text-dark font-heading">กิจกรรม</h2>
+        <div class="w-20 h-1 bg-accent mx-auto mt-3 rounded"></div>
+      </div>
+
+      <!-- Timeline -->
+      <div class="relative timeline">
+        <!-- กิจกรรม 1 -->
+        <div class="timeline-item reveal">
+          <div class="timeline-dot bg-accent"></div>
+          <div class="bg-white p-5 rounded-lg shadow-sm border-l-4 border-accent">
+            <span class="text-sm text-gray-500">2565 – ปัจจุบัน</span>
+            <h4 class="font-bold text-lg">ยุวชนอาสา</h4>
+            <ul class="list-disc pl-5 text-gray-600 mt-2 space-y-1">
+              <li>มีโอกาสช่วยโครงการยุวชนอาสา</li>
+            </ul>
+            <!-- 🖼️ สำหรับอัปโหลดรูปกิจกรรม -->
+            <div class="mt-4">
+              <img 
+                src="work1.2.jpg" 
+                alt="กิจกรรมยุวชนอาสา" 
+                class="object-cover w-full h-48 rounded-lg hover:scale-105 transition"
+                onerror="this.parentElement.innerHTML='<div class=\"bg-gray-200 w-full h-48 flex items-center justify-center text-gray-500 text-center\">รูปกิจกรรม 1<br>ยังไม่ได้อัปโหลด</div>'"
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- กิจกรรม 2 -->
+        <div class="timeline-item reveal">
+          <div class="timeline-dot bg-accent"></div>
+          <div class="bg-white p-5 rounded-lg shadow-sm border-l-4 border-accent">
+            <span class="text-sm text-gray-500">2565 – ปัจจุบัน</span>
+            <h4 class="font-bold text-lg">งานรับปริญญา</h4>
+            <ul class="list-disc pl-5 text-gray-600 mt-2 space-y-1">
+              <li>มีโอกาสช่วยงานวันรับปริญญาบัตร มหาวิทยาลัยราชภัฏอุดรธานี</li>
+            </ul>
+            <!-- 🖼️ สำหรับอัปโหลดรูปกิจกรรม -->
+            <div class="mt-4">
+              <img 
+                src="Work1.1.jpg" 
+                alt="งานรับปริญญา" 
+                class="object-cover w-full h-48 rounded-lg hover:scale-105 transition"
+                onerror="this.parentElement.innerHTML='<div class=\"bg-gray-200 w-full h-48 flex items-center justify-center text-gray-500 text-center\">รูปกิจกรรม 2<br>ยังไม่ได้อัปโหลด</div>'"
+              >
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="section bg-primary text-white">
+  <section id="contact" class="section bg-gradient-to-r from-primary to-blue-700 text-white">
     <div class="container mx-auto max-w-4xl text-center">
       <h2 class="text-3xl md:text-4xl font-bold font-heading mb-4">ติดต่อฉัน</h2>
       <p class="text-blue-100 max-w-2xl mx-auto mb-10">
@@ -452,26 +547,26 @@
       </p>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-        <div class="bg-white/10 p-5 rounded-xl backdrop-blur-sm">
+        <div class="bg-white/10 p-5 rounded-xl backdrop-blur-sm hover:scale-105 transition">
           <i class="fas fa-envelope text-2xl mb-3"></i>
           <p class="font-medium">อีเมล</p>
           <a href="mailto:66040249108@udru.ac.th" class="text-blue-200 hover:underline">
             66040249108@udru.ac.th
           </a>
         </div>
-        <div class="bg-white/10 p-5 rounded-xl backdrop-blur-sm">
+        <div class="bg-white/10 p-5 rounded-xl backdrop-blur-sm hover:scale-105 transition">
           <i class="fab fa-github text-2xl mb-3"></i>
           <p class="font-medium">GitHub</p>
           <span class="text-blue-200">กำลังพัฒนา...</span>
         </div>
-        <div class="bg-white/10 p-5 rounded-xl backdrop-blur-sm">
+        <div class="bg-white/10 p-5 rounded-xl backdrop-blur-sm hover:scale-105 transition">
           <i class="fab fa-facebook text-2xl mb-3"></i>
           <p class="font-medium">Facebook</p>
           <a href="https://www.facebook.com/share/17Z2aMdAHb/" target="_blank" class="text-blue-200 hover:underline">
             ดูโปรไฟล์
           </a>
         </div>
-        <div class="bg-white/10 p-5 rounded-xl backdrop-blur-sm">
+        <div class="bg-white/10 p-5 rounded-xl backdrop-blur-sm hover:scale-105 transition">
           <i class="fas fa-phone text-2xl mb-3"></i>
           <p class="font-medium">โทรศัพท์</p>
           <a href="tel:0810417044" class="text-blue-200 hover:underline">
@@ -481,7 +576,7 @@
       </div>
 
       <div class="mt-8">
-        <a href="tel:0810417044" class="inline-block px-6 py-3 bg-white text-primary rounded-lg font-bold hover:bg-gray-100 transition">
+        <a href="tel:0810417044" class="inline-block px-6 py-3 btn-gradient rounded-lg font-bold hover:bg-blue-700 transition shadow-lg">
           Contact me!!
         </a>
       </div>
@@ -491,7 +586,7 @@
   <!-- Footer -->
   <footer class="bg-dark text-gray-400 py-6 text-center text-sm">
     <div class="container mx-auto px-4">
-      © 2025  Narawit Nonasa
+      © 2025  Narawit Nonasa — Designed with ❤️ for your next big project
     </div>
   </footer>
 
