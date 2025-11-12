@@ -182,17 +182,18 @@
     </div>
   </section>
 
-  <!-- Skills Section -->
-  <section id="skills" class="section bg-gray-50">
-    <div class="container mx-auto max-w-6xl">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold text-dark font-heading">ทักษะและความสามารถ</h2>
-        <div class="w-20 h-1 bg-primary mx-auto mt-3 rounded"></div>
-      </div>
+<!-- Skills Section -->
+<section id="skills" class="section bg-gray-50">
+  <div class="container mx-auto max-w-6xl">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-dark font-heading">ทักษะและความสามารถ</h2>
+      <div class="w-20 h-1 bg-primary mx-auto mt-3 rounded"></div>
+    </div>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <!-- Programming -->
-        <div class="bg-white p-6 rounded-xl shadow-sm card-hover">
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Programming -->
+      <div class="bg-white p-6 rounded-xl shadow-sm card-hover min-h-[220px] flex flex-col justify-between">
+        <div>
           <div class="text-primary mb-4">
             <i class="fas fa-code text-3xl"></i>
           </div>
@@ -202,7 +203,7 @@
               <span>HTML</span>
               <span>✓</span>
             </div>
-             <div class="flex justify-between text-sm">
+            <div class="flex justify-between text-sm">
               <span>CSS</span>
               <span>✓</span>
             </div>
@@ -214,7 +215,7 @@
               <span>PHP</span>
               <span>✓</span>
             </div>
-             <div class="flex justify-between text-sm">
+            <div class="flex justify-between text-sm">
               <span>Python</span>
               <span>✓</span>
             </div>
@@ -224,9 +225,11 @@
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- AI & Data -->
-        <div class="bg-white p-6 rounded-xl shadow-sm card-hover">
+      <!-- AI & Data -->
+      <div class="bg-white p-6 rounded-xl shadow-sm card-hover min-h-[220px] flex flex-col justify-between">
+        <div>
           <div class="text-secondary mb-4">
             <i class="fas fa-database text-3xl"></i>
           </div>
@@ -236,12 +239,13 @@
               <span>SQL</span>
               <span>✓</span>
             </div>
-           </div>
           </div>
         </div>
+      </div>
 
-        <!-- Tools -->
-        <div class="bg-white p-6 rounded-xl shadow-sm card-hover">
+      <!-- Tools -->
+      <div class="bg-white p-6 rounded-xl shadow-sm card-hover min-h-[220px] flex flex-col justify-between">
+        <div>
           <div class="text-accent mb-4">
             <i class="fas fa-tools text-3xl"></i>
           </div>
@@ -251,12 +255,14 @@
             <span class="bg-gray-200 px-2 py-1 rounded text-sm">VS Code</span>
             <span class="bg-gray-200 px-2 py-1 rounded text-sm">Figma</span>
             <span class="bg-gray-200 px-2 py-1 rounded text-sm">Firebase</span>
-            <span class="bg-gray-200 px-2 py-1 rounded text-sm">visual studio</span>
+            <span class="bg-gray-200 px-2 py-1 rounded text-sm">Visual Studio</span>
           </div>
         </div>
+      </div>
 
-        <!-- Soft Skills -->
-        <div class="bg-white p-6 rounded-xl shadow-sm card-hover">
+      <!-- Soft Skills -->
+      <div class="bg-white p-6 rounded-xl shadow-sm card-hover min-h-[220px] flex flex-col justify-between">
+        <div>
           <div class="text-gray-600 mb-4">
             <i class="fas fa-users text-3xl"></i>
           </div>
@@ -272,9 +278,9 @@
         </div>
       </div>
     </div>
-  </section>
-
-  <!-- Projects Section -->
+  </div>
+</section>
+    <!-- Projects Section -->
   <section id="projects" class="section bg-white">
     <div class="container mx-auto max-w-6xl">
       <div class="text-center mb-12">
@@ -301,12 +307,21 @@
               <p class="text-gray-600 mb-4">
                 พัฒนาแอปพลิเคชันเพื่อช่วยเหลือผู้สูงอายุในการเลือกอาหารที่เหมาะสมตามสุขภาพและความต้องการ
               </p>
-              <div class="flex flex-wrap gap-2 mb-4">
+              <!-- <div class="flex flex-wrap gap-2 mb-4">
                 <span class="bg-gray-800 text-white px-2 py-1 rounded text-sm">Dart</span>
                 <span class="bg-blue-600 text-white px-2 py-1 rounded text-sm">Flutter</span>
                 <span class="bg-orange-500 text-white px-2 py-1 rounded text-sm">Firebase</span>
                 <span class="bg-purple-600 text-white px-2 py-1 rounded text-sm">Figma</span>
-              </div>
+              </div> -->
+              <!-- 📄 สำหรับอัปโหลดเอกสาร: วางไฟล์ชื่อ nsc-report.pdf ไว้ใน /docs -->
+              <a 
+                href="การเเนะนำอาหารสำหรับผู้สุงอายุ 2025.pdf" 
+                download 
+                class="mt-3 inline-block bg-gray-200 text-gray-800 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-300 transition"
+                onerror="this.outerHTML='<span class=\"text-gray-400 text-sm\">เอกสารยังไม่พร้อม</span>'"
+              >
+                📄 ดาวน์โหลดรายงาน
+              </a>
             </div>
           </div>
         </div>
@@ -329,11 +344,20 @@
               <p class="text-gray-600 mb-4">
                 ออกแบบและพัฒนาเว็บไซต์เพื่อส่งเสริมการท่องเที่ยวในจังหวัดอุดรธานี
               </p>
-              <div class="flex flex-wrap gap-2 mb-4">
+              <!-- <div class="flex flex-wrap gap-2 mb-4">
                 <span class="bg-gray-800 text-white px-2 py-1 rounded text-sm">HTML/CSS</span>
                 <span class="bg-yellow-500 text-black px-2 py-1 rounded text-sm">JavaScript</span>
                 <span class="bg-orange-500 text-white px-2 py-1 rounded text-sm">Firebase</span>
-              </div>
+              </div> -->
+              <!-- 📄 สำหรับอัปโหลดเอกสาร: วางไฟล์ชื่อ udon-web-docs.pdf ไว้ใน /docs -->
+              <a 
+                href="docs/udon-web-docs.pdf" 
+                download 
+                class="mt-3 inline-block bg-gray-200 text-gray-800 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-300 transition"
+                onerror="this.outerHTML='<span class=\"text-gray-400 text-sm\">เอกสารยังไม่พร้อม</span>'"
+              >
+                📄 ดาวน์โหลดเอกสาร
+              </a>
             </div>
           </div>
         </div>
